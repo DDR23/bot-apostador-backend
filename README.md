@@ -4,9 +4,8 @@ O intuito desse projeto é monstar um servidor com as configurações minimas de
 
 ## Ambiente de Desenvolvimento
 
-- **node** v20.15.1
-- **npm** v10.7.0
-- **next** v14.2.5
+- **node** v20.17.0
+- **npm** v10.8.2
 
 ## Etapas de Desenvolvimento 🎯
 
