@@ -9,8 +9,8 @@ config();
 
 //CONFIG. PADRÃO DO SOCKET
 import http from 'http';
-import setupSocket from "./sockets/socket";
+import SocketSetup from "./socket/SocketSetup";
 const httpServer = http.createServer(app);
-setupSocket(httpServer)
+SocketSetup(httpServer)
 
 httpServer.listen(8080, () => console.log('servidor rodando'));
