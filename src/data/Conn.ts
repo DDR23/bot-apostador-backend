@@ -1,9 +1,9 @@
 //CONFIG E IMPORTAÇÕES
 import mongoose from 'mongoose';
-import { DB_USER, DB_PASSWORD, DB_CLUSTER, DB_COLLECTION } from './config';
+import { DB_USER, DB_PASSWORD, DB_CLUSTER, DB_COLLECTION } from './Config';
 
 //FUNÇÃO DE CONEXÃO
-export default async function conn() {
+export default async function Conn() {
 
   // VERIFICA SE A CREDENCIAL DE CONEXÃO ESTÁ DEFINIDA
   if (!DB_USER || !DB_PASSWORD || !DB_CLUSTER || !DB_COLLECTION) {
