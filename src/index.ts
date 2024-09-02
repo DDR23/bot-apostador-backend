@@ -13,4 +13,8 @@ import SocketSetup from "./socket/SocketSetup";
 const httpServer = http.createServer(app);
 SocketSetup(httpServer)
 
+//EXECUTA A FUNÇÃO DE CONEXÃO COM O BANCO DE DADOS
+import conn from './data/conn';
+conn();
+
 httpServer.listen(8080, () => console.log('servidor rodando'));
