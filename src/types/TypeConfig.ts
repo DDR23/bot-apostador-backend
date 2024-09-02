@@ -1,8 +1,10 @@
+import { Types } from 'mongoose';
+
 export interface TypeConfig {
-  _id: number;
-  USER: string;
-  PASSWORD: string;
-  TIME_START: string;
-  TIME_FINISH: string;
-  STATUS: boolean;
+  _id: Types.ObjectId;
+  CONFIG_USER: string;
+  CONFIG_PASSWORD: string;
+  CONFIG_TIME_START: string;
+  CONFIG_TIME_FINISH: string;
+  CONFIG_STATUS: boolean;
 }
