@@ -16,13 +16,33 @@ export class Config implements TypeConfig {
     this.TIME_FINISH = data.TIME_FINISH;
     this.STATUS = data.STATUS;
   }
+
+  // Método para salvar a configuração
   save(): void {
-    console.log(`A configuração do usuario: ${this.USER} foi salva com sucesso.`);
+    // Aqui você pode adicionar a lógica para salvar os dados em um banco de dados real, ou simular a persistência.
+    console.log(`A configuração do usuário ${this.USER} foi salva com sucesso.`);
     console.log('Config:', { ...this });
   }
+
+  // Método para atualizar a configuração
+  update(data: Partial<TypeConfig>): void {
+    Object.assign(this, data);
+    console.log(`Configuração do usuário ${this.USER} atualizada com sucesso.`);
+  }
+
+  // Método para deletar a configuração
+  delete(): void {
+    console.log(`Configuração do usuário ${this.USER} deletada com sucesso.`);
+  }
+
+  // Método para encontrar uma configuração pelo ID (simulação)
+  static findById(id: number): Config | null {
+    // Aqui, você pode implementar a lógica de busca, por exemplo, em um array estático que simula um banco de dados.
+    // Vamos retornar null para simular um cenário onde o registro não foi encontrado.
+    console.log(`Buscando configuração com ID ${id}...`);
+    return null;
+  }
 }
-
-
 
 
 

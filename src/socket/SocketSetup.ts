@@ -9,6 +9,7 @@ export default function SocketSetup(httpServer: HttpServer) {
     console.log('Um usuário se conectou');
 
     HandleConfig(socket);
+    // HandleStrategy(socket);
     
     socket.on('disconnect', () => console.log('Usuário desconectado'));
   });
