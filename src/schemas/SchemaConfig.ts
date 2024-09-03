@@ -24,11 +24,15 @@ const modelConfig: Schema = new Schema<TypeConfig>(
     CONFIG_STATUS: {
       type: Boolean,
       default: false
-    }
+    },
+    CONFIG_STRATEGIES: [{
+      type: Schema.Types.ObjectId,
+      ref: 'StrategyTenis'
+    }]
   },
   { 
     timestamps: true
   }
 );
 
-export const schemaConfig = model<TypeConfig>('Config', modelConfig);
+export default model<TypeConfig>('Config', modelConfig);
