@@ -2,8 +2,10 @@
 import { Schema, model, Document } from 'mongoose';
 import { TypeStrategyTenis } from '../types/TypeStrategyTenis';
 
+export interface StrategyTenisDocument extends TypeStrategyTenis, Document {}
+
 //ESSE SCHEMA CRIA AUTOMATICAMENTE A TABELA NO BANCO DE DADOS
-const modelStrategyTenis: Schema = new Schema<TypeStrategyTenis>(
+const modelStrategyTenis: Schema<StrategyTenisDocument> = new Schema<StrategyTenisDocument>(
   {
     STRATEGY_DIFF_SET: {
       type: Number
@@ -35,4 +37,4 @@ const modelStrategyTenis: Schema = new Schema<TypeStrategyTenis>(
   }
 );
 
-export default model<TypeStrategyTenis & Document>('StrategyTenis', modelStrategyTenis);
+export default model<StrategyTenisDocument>('StrategyTenis', modelStrategyTenis);

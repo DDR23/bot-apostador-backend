@@ -1,24 +1,22 @@
-import { Model, Document } from "mongoose";
+import { Model } from "mongoose";
 import { TypeStrategyTenis } from "../types/TypeStrategyTenis";
-import SchemaStrategyTenis from "../schemas/SchemaStrategyTenis";
-
-interface StrategyDocument extends TypeStrategyTenis, Document {}
+import SchemaStrategyTenis, { StrategyTenisDocument } from "../schemas/SchemaStrategyTenis";
 
 class Strategy {
-  private model: Model<StrategyDocument>;
+  private model: Model<StrategyTenisDocument>;
 
   constructor() {
     this.model = SchemaStrategyTenis;
   }
 
-  async save(data: TypeStrategyTenis): Promise<StrategyDocument> {
+  async save(data: TypeStrategyTenis): Promise<StrategyTenisDocument> {
     const strategy = new this.model(data);
     await strategy.save();
     console.log(`A estratégia do usuário ${data.STRATEGY_CONFIG} foi salva com sucesso.`);
     return strategy;
   }
 
-  async update(id: string, data: Partial<TypeStrategyTenis>): Promise<StrategyDocument | null> {
+  async update(id: string, data: Partial<TypeStrategyTenis>): Promise<StrategyTenisDocument | null> {
     const updatedStrategy = await this.model.findByIdAndUpdate(id, data, { new: true });
     if (updatedStrategy) {
       console.log(`Estratégia com ID ${id} atualizada com sucesso.`);
@@ -31,7 +29,7 @@ class Strategy {
     console.log(`Estratégia com ID ${id} deletada com sucesso.`);
   }
 
-  async findById(id: string): Promise<StrategyDocument | null> {
+  async findById(id: string): Promise<StrategyTenisDocument | null> {
     const strategy = await this.model.findById(id);
     if (strategy) {
       console.log(`Estratégia encontrada com ID ${id}.`);
