@@ -27,6 +27,14 @@ const modelConfig: Schema<ConfigDocument> = new Schema<ConfigDocument>(
       type: Boolean,
       default: false
     },
+    CONFIG_ENTRIES: {
+      type: Number,
+      default: 0
+    },
+    CONFIG_RESULT: {
+      type: Number,
+      default: 0
+    },
     CONFIG_STRATEGIES: [{
       type: Schema.Types.ObjectId,
       ref: 'StrategyTenis'
