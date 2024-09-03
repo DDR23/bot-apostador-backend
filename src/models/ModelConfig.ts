@@ -21,7 +21,6 @@ class Config {
   }
 
   async delete(id: string): Promise<void> {
-    const config = await this.model.findById(id);
     await this.model.findByIdAndDelete(id);
   }
 
