@@ -6,9 +6,10 @@ export default async function ControllerConfigPost(socket: Socket, data: TypeCon
   try {
     if (!data || typeof data !== 'object') {
       socket.emit('CONFIG_POST_RES', {
-        title:'Erro',
+        title: 'Erro',
         message: 'Dados inválidos.'
       });
+      return;
     };
     await Config.save(data);
     socket.emit('CONFIG_POST_RES', {
