@@ -2,8 +2,10 @@
 import { Schema, model, Document } from 'mongoose';
 import { TypeConfig } from '../types/TypeConfig';
 
+export interface ConfigDocument extends TypeConfig, Document {}
+
 //ESSE SCHEMA CRIA AUTOMATICAMENTE A TABELA NO BANCO DE DADOS
-const modelConfig: Schema = new Schema<TypeConfig>(
+const modelConfig: Schema<ConfigDocument> = new Schema<ConfigDocument>(
   {
     CONFIG_USER: {
       type: String,
@@ -35,4 +37,4 @@ const modelConfig: Schema = new Schema<TypeConfig>(
   }
 );
 
-export default model<TypeConfig & Document>('Config', modelConfig);
+export default model<ConfigDocument>('Config', modelConfig);

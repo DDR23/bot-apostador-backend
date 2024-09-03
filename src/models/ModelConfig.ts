@@ -1,9 +1,8 @@
-import SchemaConfig from '../schemas/SchemaConfig';
+import SchemaConfig, { ConfigDocument } from '../schemas/SchemaConfig';
 import SchemaStrategyTenis from '../schemas/SchemaStrategyTenis';
 import { TypeConfig } from '../types/TypeConfig';
-import { Model, Document } from 'mongoose';
+import { Model } from 'mongoose';
 
-interface ConfigDocument extends TypeConfig, Document {}
 
 class Config {
   private model: Model<ConfigDocument>;
