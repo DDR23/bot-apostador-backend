@@ -1,5 +1,5 @@
 //CONFIG E IMPORTAÇÕES
-import { Schema, model } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 import { TypeStrategyTenis } from '../types/TypeStrategyTenis';
 
 //ESSE SCHEMA CRIA AUTOMATICAMENTE A TABELA NO BANCO DE DADOS
@@ -35,4 +35,4 @@ const modelStrategyTenis: Schema = new Schema<TypeStrategyTenis>(
   }
 );
 
-export default model<TypeStrategyTenis>('StrategyTenis', modelStrategyTenis);
+export default model<TypeStrategyTenis & Document>('StrategyTenis', modelStrategyTenis);

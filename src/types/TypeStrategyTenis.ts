@@ -1,7 +1,6 @@
 import { Types } from "mongoose";
 
 export interface TypeStrategyTenis {
-  _id?: Types.ObjectId;
   STRATEGY_DIFF_SET?: number;
   STRATEGY_DIFF_POINT?: number;
   STRATEGY_MULTIPLIER?: number;
