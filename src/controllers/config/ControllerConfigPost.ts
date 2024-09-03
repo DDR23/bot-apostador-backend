@@ -11,10 +11,11 @@ export default async function ControllerConfigPost(socket: Socket, data: TypeCon
       });
       return;
     };
-    await Config.save(data);
+    const config = await Config.save(data);
     socket.emit('CONFIG_POST_RES', {
       title: 'Sucesso',
       message: 'Configuração criada com sucesso!',
+      data: config
     });
   } catch (error) {
     socket.emit('CONFIG_POST_RES', {
