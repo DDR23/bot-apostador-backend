@@ -1,100 +1,62 @@
-import { TypeConfig } from "../types/TypeConfig";
+import SchemaConfig from '../schemas/SchemaConfig';
+import SchemaStrategyTenis from '../schemas/SchemaStrategyTenis';
+import { TypeConfig } from '../types/TypeConfig';
+import { Model, Document } from 'mongoose';
 
-export class Config implements TypeConfig {
-  _id: number;
-  USER: string;
-  PASSWORD: string;
-  TIME_START: string;
-  TIME_FINISH: string;
-  STATUS: boolean;
+interface ConfigDocument extends TypeConfig, Document {}
 
-  constructor(data: TypeConfig) {
-    this._id = data._id;
-    this.USER = data.USER;
-    this.PASSWORD = data.PASSWORD;
-    this.TIME_START = data.TIME_START;
-    this.TIME_FINISH = data.TIME_FINISH;
-    this.STATUS = data.STATUS;
+class Config {
+  private model: Model<ConfigDocument>;
+
+  constructor() {
+    this.model = SchemaConfig;
   }
 
-  // Método para salvar a configuração
-  save(): void {
-    // Aqui você pode adicionar a lógica para salvar os dados em um banco de dados real, ou simular a persistência.
-    console.log(`A configuração do usuário ${this.USER} foi salva com sucesso.`);
-    console.log('Config:', { ...this });
+  async save(data: TypeConfig): Promise<ConfigDocument> {
+    const config = new this.model(data);
+    await config.save();
+    console.log(`A configuração do usuário ${data.CONFIG_USER} foi salva com sucesso.`);
+    return config;
   }
 
-  // Método para atualizar a configuração
-  update(data: Partial<TypeConfig>): void {
-    Object.assign(this, data);
-    console.log(`Configuração do usuário ${this.USER} atualizada com sucesso.`);
+  async update(id: string, data: Partial<TypeConfig>): Promise<ConfigDocument | null> {
+    const updatedConfig = await this.model.findByIdAndUpdate(id, data, { new: true }).populate('STRATEGIES');
+    if (updatedConfig) {
+      console.log(`Configuração do usuário ${updatedConfig.CONFIG_USER} atualizada com sucesso.`);
+    }
+    return updatedConfig;
   }
 
-  // Método para deletar a configuração
-  delete(): void {
-    console.log(`Configuração do usuário ${this.USER} deletada com sucesso.`);
+  async delete(id: string): Promise<void> {
+    const config = await this.model.findById(id).populate('CONFIG_STRATEGIES');
+
+    if (config) {
+      if (config.CONFIG_STRATEGIES && config.CONFIG_STRATEGIES.length > 0) {
+        await SchemaStrategyTenis.deleteMany({ _id: { $in: config.CONFIG_STRATEGIES } });
+      }
+
+      await this.model.findByIdAndDelete(id);
+      console.log(`Configuração e suas estratégias deletadas com sucesso.`);
+    } else {
+      console.log(`Nenhuma configuração encontrada com ID ${id}`);
+    }
   }
 
-  // Método para encontrar uma configuração pelo ID (simulação)
-  static findById(id: number): Config | null {
-    // Aqui, você pode implementar a lógica de busca, por exemplo, em um array estático que simula um banco de dados.
-    // Vamos retornar null para simular um cenário onde o registro não foi encontrado.
+  async findById(id: string): Promise<ConfigDocument | null> {
+    const config = await this.model.findById(id).populate('STRATEGIES');
     console.log(`Buscando configuração com ID ${id}...`);
-    return null;
+    return config;
+  }
+
+  async findStrategies(id: string): Promise<any[]> {
+    const config = await this.model.findById(id).populate('STRATEGIES');
+    if (config) {
+      console.log(`Estratégias encontradas para a configuração com ID ${id}:`, config.CONFIG_STRATEGIES);
+      return config.CONFIG_STRATEGIES ?? [];
+    }
+    console.log(`Nenhuma configuração encontrada com ID ${id}`);
+    return [];
   }
 }
 
-
-
-
-
-
-
-// _id: number;
-// USER: string;
-// PASSWORD: string;
-// TIME_START: string;
-// TIME_FINISH: string;
-// STOP_WIN: number;
-// STOP_LOSS: number;
-// ESTRATEGIES: EstrategiesTenis[];
-// STATUS: boolean;
-
-// constructor(data: TypeConfigTenis) {
-//   this._id = data._id;
-//   this.USER = data.USER;
-//   this.PASSWORD = data.PASSWORD;
-//   this.TIME_START = data.TIME_START;
-//   this.TIME_FINISH = data.TIME_FINISH;
-//   this.STOP_WIN = data.STOP_WIN;
-//   this.STOP_LOSS = data.STOP_LOSS;
-//   this.ESTRATEGIES = data.ESTRATEGIES;
-//   this.STATUS = data.STATUS;
-// }
-
-// update(data: Partial<TypeConfigTenis>): void {
-//   Object.assign(this, data);
-//   console.log(`Configuração do usuário ${this.USER} atualizada com sucesso.`);
-// }
-
-// static findById(id: number): Config {
-//   // Simulação de busca por ID
-//   // Dados de exemplo, você pode ajustar conforme sua lógica
-//   return new Config(
-//     'ExemploUser',
-//     'ExemploSenha',
-//     '13:00',
-//     '14:00',
-//     5,
-//     5,
-//     [
-//       { DIFF_SET: 2, DIFF_POINT: 5, MULTIP: 1.7, ODD_VALUE: 5 },
-//       { DIFF_SET: null, DIFF_POINT: null, MULTIP: 1.7, ODD_VALUE: 5 }
-//     ],
-//     true
-//   );
-// }
-
-// delete(): void {
-//   console.log(`Configuração do usuário ${this.USER} deletada com sucesso.`);
-// }
+export default new Config();

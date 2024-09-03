@@ -1,7 +1,6 @@
 import { Types } from 'mongoose';
 
 export interface TypeConfig {
-  _id: Types.ObjectId;
   CONFIG_USER: string;
   CONFIG_PASSWORD: string;
   CONFIG_TIME_START: string;

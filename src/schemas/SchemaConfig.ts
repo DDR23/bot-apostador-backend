@@ -1,5 +1,5 @@
 //CONFIG E IMPORTAÇÕES
-import { Schema, model } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 import { TypeConfig } from '../types/TypeConfig';
 
 //ESSE SCHEMA CRIA AUTOMATICAMENTE A TABELA NO BANCO DE DADOS
@@ -35,4 +35,4 @@ const modelConfig: Schema = new Schema<TypeConfig>(
   }
 );
 
-export default model<TypeConfig>('Config', modelConfig);
+export default model<TypeConfig & Document>('Config', modelConfig);
