@@ -35,4 +35,4 @@ const modelStrategyTenis: Schema = new Schema<TypeStrategyTenis>(
   }
 );
 
-export const schemaStrategyTenis = model<TypeStrategyTenis>('StrategyTenis', modelStrategyTenis);
+export default model<TypeStrategyTenis>('StrategyTenis', modelStrategyTenis);
