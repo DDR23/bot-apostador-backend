@@ -4,7 +4,6 @@ import { TypeConfig } from "../../types/TypeConfig";
 
 export default async function ControllerConfigPut(socket: Socket, id: string, data: Partial<TypeConfig>) {
   try {
-    console.log(data)
     if (!data || typeof data !== 'object' || Object.keys(data).length === 0) {
       socket.emit('CONFIG_PUT_RES', {
         title: 'Alerta',
