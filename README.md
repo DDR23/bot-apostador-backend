@@ -12,3 +12,6 @@ O intuito desse projeto é monstar um servidor com as configurações minimas de
 - npm init -y
 - npm i express socket.io cors
 - npm i -D typescript @types/node @types/express tsx
+
+
+<!-- TODO - pronto pra iniciar logica de strategy -->
