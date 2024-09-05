@@ -1,8 +1,8 @@
 import { Socket } from "socket.io";
 import Config from '../../models/ModelConfig';
-import { TypeConfigEdit } from "../../types/TypeConfig";
+import { TypeConfigUpdate } from "../../types/TypeConfig";
 
-export default async function ControllerConfigPut(socket: Socket, id: string, data: Partial<TypeConfigEdit>) {
+export default async function ControllerConfigPut(socket: Socket, id: string, data: Partial<TypeConfigUpdate>) {
   try {
     if (!data || typeof data !== 'object' || Object.keys(data).length === 0) {
       socket.emit('CONFIG_PUT_RES', {

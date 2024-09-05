@@ -1,5 +1,5 @@
 import SchemaConfig, { ConfigDocument } from '../schemas/SchemaConfig';
-import { TypeConfigCreate, TypeConfigEdit } from '../types/TypeConfig';
+import { TypeConfigCreate, TypeConfigUpdate } from '../types/TypeConfig';
 import { Model } from 'mongoose';
 
 class Config {
@@ -25,7 +25,7 @@ class Config {
     return configs;
   }
 
-  async update(id: string, data: Partial<TypeConfigEdit>): Promise<ConfigDocument | null> {
+  async update(id: string, data: Partial<TypeConfigUpdate>): Promise<ConfigDocument | null> {
     const updatedConfig = await this.model.findByIdAndUpdate(id, data, { new: true });
     return updatedConfig;
   }
