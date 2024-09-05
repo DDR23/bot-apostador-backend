@@ -2,7 +2,7 @@
 import { Schema, model, Document } from 'mongoose';
 import { TypeConfig } from '../types/TypeConfig';
 
-export interface ConfigDocument extends TypeConfig, Document {}
+export interface ConfigDocument extends Omit<TypeConfig, '_id'>, Document {}
 
 //ESSE SCHEMA CRIA AUTOMATICAMENTE A TABELA NO BANCO DE DADOS
 const modelConfig: Schema<ConfigDocument> = new Schema<ConfigDocument>(
@@ -17,11 +17,11 @@ const modelConfig: Schema<ConfigDocument> = new Schema<ConfigDocument>(
     },
     CONFIG_TIME_START: {
       type: String,
-      required: true
+      default: '--:--'
     },
     CONFIG_TIME_FINISH: {
       type: String,
-      required: true
+      default: '--:--'
     },
     CONFIG_STATUS: {
       type: Boolean,

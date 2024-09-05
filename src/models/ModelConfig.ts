@@ -1,5 +1,5 @@
 import SchemaConfig, { ConfigDocument } from '../schemas/SchemaConfig';
-import { TypeConfig } from '../types/TypeConfig';
+import { TypeConfigCreate, TypeConfigEdit } from '../types/TypeConfig';
 import { Model } from 'mongoose';
 
 class Config {
@@ -9,19 +9,10 @@ class Config {
     this.model = SchemaConfig;
   }
 
-  async save(data: TypeConfig): Promise<ConfigDocument> {
+  async save(data: TypeConfigCreate): Promise<ConfigDocument> {
     const config = new this.model(data);
     await config.save();
     return config;
-  }
-
-  async update(id: string, data: Partial<TypeConfig>): Promise<ConfigDocument | null> {
-    const updatedConfig = await this.model.findByIdAndUpdate(id, data, { new: true });
-    return updatedConfig;
-  }
-
-  async delete(id: string): Promise<void> {
-    await this.model.findByIdAndDelete(id);
   }
 
   async findById(id: string): Promise<ConfigDocument | null> {
@@ -33,6 +24,16 @@ class Config {
     const configs = await this.model.find();
     return configs;
   }
+
+  async update(id: string, data: Partial<TypeConfigEdit>): Promise<ConfigDocument | null> {
+    const updatedConfig = await this.model.findByIdAndUpdate(id, data, { new: true });
+    return updatedConfig;
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.model.findByIdAndDelete(id);
+  }
+
 }
 
 export default new Config();

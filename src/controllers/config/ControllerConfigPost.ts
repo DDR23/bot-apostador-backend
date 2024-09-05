@@ -1,8 +1,8 @@
 import { Socket } from 'socket.io';
 import Config from '../../models/ModelConfig';
-import { TypeConfig } from '../../types/TypeConfig';
+import { TypeConfig, TypeConfigCreate } from '../../types/TypeConfig';
 
-export default async function ControllerConfigPost(socket: Socket, data: TypeConfig) {
+export default async function ControllerConfigPost(socket: Socket, data: TypeConfigCreate) {
   try {
     if (!data || typeof data !== 'object') {
       socket.emit('CONFIG_POST_RES', {
@@ -12,6 +12,7 @@ export default async function ControllerConfigPost(socket: Socket, data: TypeCon
       return;
     };
     const config = await Config.save(data);
+    console.log(config)
     socket.emit('CONFIG_POST_RES', {
       title: 'Sucesso',
       message: 'Configuração criada com sucesso!',
