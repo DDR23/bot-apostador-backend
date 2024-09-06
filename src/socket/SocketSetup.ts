@@ -1,6 +1,7 @@
 import { Server as HttpServer } from 'http';
 import { Server } from 'socket.io';
 import HandleConfig from './Handlers/HandleConfig';
+import HandleStrategy from './Handlers/HandleStrategy';
 
 export default function SocketSetup(httpServer: HttpServer) {
   const io = new Server(httpServer, { cors: { origin: process.env.URL_FRONT } });
@@ -9,7 +10,7 @@ export default function SocketSetup(httpServer: HttpServer) {
     console.log('Um usuário se conectou');
 
     HandleConfig(socket);
-    // HandleStrategy(socket);
+    HandleStrategy(socket);
     
     socket.on('disconnect', () => console.log('Usuário desconectado'));
   });

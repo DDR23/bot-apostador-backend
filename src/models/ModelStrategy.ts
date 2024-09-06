@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import { TypeStrategyTenis } from "../types/TypeStrategyTenis";
+import { TypeStrategyTenis, TypeStrategyTenisCreate } from "../types/TypeStrategyTenis";
 import SchemaStrategyTenis, { StrategyTenisDocument } from "../schemas/SchemaStrategyTenis";
 
 class Strategy {
@@ -9,10 +9,9 @@ class Strategy {
     this.model = SchemaStrategyTenis;
   }
 
-  async save(data: TypeStrategyTenis): Promise<StrategyTenisDocument> {
+  async save(data: TypeStrategyTenisCreate): Promise<StrategyTenisDocument> {
     const strategy = new this.model(data);
     await strategy.save();
-    console.log(`A estratégia do usuário ${data.STRATEGY_CONFIG} foi salva com sucesso.`);
     return strategy;
   }
 
