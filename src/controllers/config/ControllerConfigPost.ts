@@ -12,7 +12,6 @@ export default async function ControllerConfigPost(socket: Socket, data: TypeCon
       return;
     };
     const config = await Config.save(data);
-    console.log(config)
     socket.emit('CONFIG_POST_RES', {
       title: 'Sucesso',
       message: 'Configuração criada com sucesso!',

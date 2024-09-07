@@ -1,6 +1,7 @@
 import SchemaConfig, { ConfigDocument } from '../schemas/SchemaConfig';
 import { TypeConfigCreate, TypeConfigUpdate } from '../types/TypeConfig';
 import { Model, Types } from 'mongoose';
+import Strategy from './ModelStrategy';
 
 class Config {
   private model: Model<ConfigDocument>;
@@ -31,6 +32,7 @@ class Config {
   }
 
   async delete(id: Types.ObjectId): Promise<void> {
+    await Strategy.deleteManyByConfig(id)
     await this.model.findByIdAndDelete(id);
   }
 

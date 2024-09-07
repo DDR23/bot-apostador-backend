@@ -17,11 +17,6 @@ class Strategy {
 
   // async findById(id: Types.ObjectId): Promise<StrategyTenisDocument | null> {
   //   const strategy = await this.model.findById(id);
-  //   if (strategy) {
-  //     console.log(`Estratégia encontrada com ID ${id}.`);
-  //   } else {
-  //     console.log(`Nenhuma estratégia encontrada com ID ${id}.`);
-  //   }
   //   return strategy;
   // }
 
@@ -32,11 +27,12 @@ class Strategy {
 
   // async update(id: Types.ObjectId, data: Partial<TypeStrategyTenis>): Promise<StrategyTenisDocument | null> {
   //   const updatedStrategy = await this.model.findByIdAndUpdate(id, data, { new: true });
-  //   if (updatedStrategy) {
-  //     console.log(`Estratégia com ID ${id} atualizada com sucesso.`);
-  //   }
   //   return updatedStrategy;
   // }
+
+  async deleteManyByConfig(configId: Types.ObjectId): Promise<void> {
+    await this.model.deleteMany({ STRATEGY_CONFIG: configId });
+  }
 
   async delete(id: Types.ObjectId): Promise<void> {
     await this.model.findByIdAndDelete(id);
