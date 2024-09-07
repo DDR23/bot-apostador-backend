@@ -43,6 +43,15 @@ class Config {
     return updatedConfig;
   }
 
+  async removeStrategyFromConfig(configId: Types.ObjectId, strategyId: Types.ObjectId): Promise<ConfigDocument | null> {
+    const updatedConfig = await this.model.findByIdAndUpdate(
+      configId,
+      { $pull: { CONFIG_STRATEGIES: strategyId } },
+      { new: true }
+    );
+    return updatedConfig;
+  }
+
 }
 
 export default new Config();
