@@ -34,6 +34,7 @@ export interface TypeStrategyTenisCreate {
   STRATEGY_STOP?: boolean;
   STRATEGY_STOP_WIN?: number;
   STRATEGY_STOP_LOSS?: number;
+  STRATEGY_CONFIG: Types.ObjectId;
 }
 
 export interface TypeStrategyTenisUpdate {

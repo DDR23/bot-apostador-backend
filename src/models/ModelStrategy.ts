@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
 import { TypeStrategyTenis, TypeStrategyTenisCreate } from "../types/TypeStrategyTenis";
 import SchemaStrategyTenis, { StrategyTenisDocument } from "../schemas/SchemaStrategyTenis";
 
@@ -15,7 +15,7 @@ class Strategy {
     return strategy;
   }
 
-  async update(id: string, data: Partial<TypeStrategyTenis>): Promise<StrategyTenisDocument | null> {
+  async update(id: Types.ObjectId, data: Partial<TypeStrategyTenis>): Promise<StrategyTenisDocument | null> {
     const updatedStrategy = await this.model.findByIdAndUpdate(id, data, { new: true });
     if (updatedStrategy) {
       console.log(`Estratégia com ID ${id} atualizada com sucesso.`);
@@ -23,12 +23,12 @@ class Strategy {
     return updatedStrategy;
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: Types.ObjectId): Promise<void> {
     await this.model.findByIdAndDelete(id);
     console.log(`Estratégia com ID ${id} deletada com sucesso.`);
   }
 
-  async findById(id: string): Promise<StrategyTenisDocument | null> {
+  async findById(id: Types.ObjectId): Promise<StrategyTenisDocument | null> {
     const strategy = await this.model.findById(id);
     if (strategy) {
       console.log(`Estratégia encontrada com ID ${id}.`);
@@ -36,6 +36,16 @@ class Strategy {
       console.log(`Nenhuma estratégia encontrada com ID ${id}.`);
     }
     return strategy;
+  }
+
+  async findAllByConfig(configId: Types.ObjectId): Promise<StrategyTenisDocument[]> {
+    const strategies = await this.model.find({ STRATEGY_CONFIG: configId });
+    if (strategies.length > 0) {
+      console.log(`${strategies.length} estratégias encontradas para a configuração com ID ${configId}.`);
+    } else {
+      console.log(`Nenhuma estratégia encontrada para a configuração com ID ${configId}.`);
+    }
+    return strategies;
   }
 }
 

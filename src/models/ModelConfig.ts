@@ -1,6 +1,6 @@
 import SchemaConfig, { ConfigDocument } from '../schemas/SchemaConfig';
 import { TypeConfigCreate, TypeConfigUpdate } from '../types/TypeConfig';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 
 class Config {
   private model: Model<ConfigDocument>;
@@ -15,7 +15,7 @@ class Config {
     return config;
   }
 
-  async findById(id: string): Promise<ConfigDocument | null> {
+  async findById(id: Types.ObjectId): Promise<ConfigDocument | null> {
     const config = await this.model.findById(id);
     return config;
   }
@@ -25,13 +25,22 @@ class Config {
     return configs;
   }
 
-  async update(id: string, data: Partial<TypeConfigUpdate>): Promise<ConfigDocument | null> {
+  async update(id: Types.ObjectId, data: Partial<TypeConfigUpdate>): Promise<ConfigDocument | null> {
     const updatedConfig = await this.model.findByIdAndUpdate(id, data, { new: true });
     return updatedConfig;
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: Types.ObjectId): Promise<void> {
     await this.model.findByIdAndDelete(id);
+  }
+
+  async addStrategyToConfig(configId: Types.ObjectId, strategyId: Types.ObjectId): Promise<ConfigDocument | null> {
+    const updatedConfig = await this.model.findByIdAndUpdate(
+      configId,
+      { $push: { CONFIG_STRATEGIES: strategyId } },
+      { new: true }
+    );
+    return updatedConfig;
   }
 
 }

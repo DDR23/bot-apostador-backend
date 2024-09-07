@@ -1,6 +1,6 @@
 import { Socket } from 'socket.io';
 import Config from '../../models/ModelConfig';
-import { TypeConfig, TypeConfigCreate } from '../../types/TypeConfig';
+import { TypeConfigCreate } from '../../types/TypeConfig';
 
 export default async function ControllerConfigPost(socket: Socket, data: TypeConfigCreate) {
   try {

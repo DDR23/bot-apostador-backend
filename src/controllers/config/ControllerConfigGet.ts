@@ -1,7 +1,8 @@
 import { Socket } from "socket.io";
+import { Types } from "mongoose";
 import Config from '../../models/ModelConfig';
 
-export default async function ControllerConfigGet(socket: Socket, id: string) {
+export default async function ControllerConfigGet(socket: Socket, id: Types.ObjectId) {
   try {
     const config = await Config.findById(id);
     socket.emit('CONFIG_GET_RES', {
