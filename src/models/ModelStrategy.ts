@@ -1,5 +1,5 @@
 import { Model, Types } from "mongoose";
-import { TypeStrategyTenis, TypeStrategyTenisCreate } from "../types/TypeStrategyTenis";
+import { TypeStrategyTenis, TypeStrategyTenisCreate, TypeStrategyTenisUpdate } from "../types/TypeStrategyTenis";
 import SchemaStrategyTenis, { StrategyTenisDocument } from "../schemas/SchemaStrategyTenis";
 
 class Strategy {
@@ -25,7 +25,7 @@ class Strategy {
     return strategies;
   }
 
-  // async update(id: Types.ObjectId, data: Partial<TypeStrategyTenis>): Promise<StrategyTenisDocument | null> {
+  // async update(id: Types.ObjectId, data: Partial<TypeStrategyTenisUpdate>): Promise<StrategyTenisDocument | null> {
   //   const updatedStrategy = await this.model.findByIdAndUpdate(id, data, { new: true });
   //   return updatedStrategy;
   // }

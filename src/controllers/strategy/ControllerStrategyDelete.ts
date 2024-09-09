@@ -1,5 +1,4 @@
 import { Socket } from 'socket.io';
-import { Types } from 'mongoose';
 import Strategy from '../../models/ModelStrategy';
 import Config from '../../models/ModelConfig';
 import { TypeStrategyTenis } from '../../types/TypeStrategyTenis';
