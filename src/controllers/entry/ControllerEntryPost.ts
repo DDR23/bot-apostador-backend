@@ -23,6 +23,8 @@ export default async function ControllerEntryPost(socket: Socket, data: TypeConf
 
     scraper.emit('SCRAPER_INIT', data);
 
+    // VERIFICAR SE O DATA RECEBIDO É UMA CONFIG OU UM ARRAY DE CONFIG ANTES DE ENVIAR
+
     // espera o retorno do evento (esse retorno deve ser apenas um novo objeto "entrada" pra que ela seja salva aqui, toda a logica de analise e entrada fica no scraping).
     // da um await entry.save() e envia uma notificação pro front que uma entrada acabou de ser feita
 
