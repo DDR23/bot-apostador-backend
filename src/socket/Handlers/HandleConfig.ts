@@ -1,4 +1,4 @@
-import { Socket } from "socket.io";
+import { Server, Socket } from "socket.io";
 import { Types } from "mongoose";
 import { TypeConfigCreate, TypeConfigUpdate } from "../../types/TypeConfig";
 import ControllerConfigPost from "../../controllers/config/ControllerConfigPost";
@@ -7,10 +7,10 @@ import ControllerConfigGetAll from "../../controllers/config/ControllerConfigGet
 import ControllerConfigPut from "../../controllers/config/ControllerConfigPut";
 import ControllerConfigDelete from "../../controllers/config/ControllerConfigDelete";
 
-export default function HandleConfig(socket: Socket) {
+export default function HandleConfig(io: Server ,socket: Socket) {
   socket.on('CONFIG_POST', (data: TypeConfigCreate) => ControllerConfigPost(socket, data));
   socket.on('CONFIG_GET', (id: Types.ObjectId) => ControllerConfigGet(socket, id));
   socket.on('CONFIG_GETALL', () => ControllerConfigGetAll(socket));
-  socket.on('CONFIG_PUT', (id: Types.ObjectId, data: Partial<TypeConfigUpdate>) => ControllerConfigPut(socket, id, data));
+  socket.on('CONFIG_PUT', (id: Types.ObjectId, data: Partial<TypeConfigUpdate>) => ControllerConfigPut(io, socket, id, data));
   socket.on('CONFIG_DELETE', (id: Types.ObjectId) => ControllerConfigDelete(socket, id));
 }
