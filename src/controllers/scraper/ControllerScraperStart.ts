@@ -7,6 +7,11 @@ import ControllerConfigPut from '../config/ControllerConfigPut';
 export default async function ControllerScraperStart(io: Server, socket: Socket, data: TypeConfigToScraper) {
   try {
     const scraper = GetSocket();
+    
+    // Remover listeners existentes antes de adicionar novos
+    scraper.removeAllListeners('SCRAPER_INIT_RES_ON');
+    scraper.removeAllListeners('SCRAPER_INIT_RES_OFF');
+
     const strategies = await Strategy.findAllByConfig(data._id);
     data.CONFIG_STRATEGIES = strategies;
 
