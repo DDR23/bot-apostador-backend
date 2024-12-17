@@ -1,13 +1,6 @@
 # bot-apostador-bet365-backend
-Esse repositório foi criado e desenvolvido para o Backend de um bot de apostas esportivas, sendo esse o backend central responsavel por mediar todo fluxo de informação entre o frontend e o scrapper.
 
-## Ambiente de Desenvolvimento
+## Sobre o projeto
+esse projeto se trata de um bot de apostas, usa tecnologias como WebSocket e Scrapping com PlayWright para automatizao de todo o fluxo, desde a leitura dos jogos ao vivo, comparação dos parametros de entrada para cada partida, entrada, paradas por stop ou tempo de atividade e analise. este projeto é divido em tres partes, um frontend para o gerenciamento e adição de configurações, esse backend central responsavel pela logica de armazenamento e comunicação/ponte entre as partes, e um backend responsavel exclusivamente para gestao e automação do bot.
 
-- **node** v20.17.0
-- **npm** v10.8.2
-
-## Etapas de Desenvolvimento 🎯
-
-- npm init -y
-- npm i express socket.io cors
-- npm i -D typescript @types/node @types/express tsx
+OBS: este projeto foi descontinuado/pausado por tempo indeterminado
