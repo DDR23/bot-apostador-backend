@@ -1,6 +1,5 @@
-# atividade---backend---meu-primeiro-socket---others
-
-O intuito desse projeto é monstar um servidor com as configurações minimas de websocket, que servirá de base para os proximos projetos que usem desta mesma tecnologia.
+# bot-apostador-backend
+Esse repositório foi criado e desenvolvido para o Backend de um bot de apostas esportivas, sendo esse o backend central responsavel por mediar todo fluxo de informação entre o frontend e o scrapper.
 
 ## Ambiente de Desenvolvimento
 
