@@ -1,4 +1,4 @@
-# bot-apostador-backend
+# bot-apostador-bet365-backend
 Esse repositório foi criado e desenvolvido para o Backend de um bot de apostas esportivas, sendo esse o backend central responsavel por mediar todo fluxo de informação entre o frontend e o scrapper.
 
 ## Ambiente de Desenvolvimento
